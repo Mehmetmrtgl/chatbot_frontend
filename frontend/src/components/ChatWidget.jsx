@@ -202,7 +202,7 @@ const ChatWidget = () => {
               placeholder="Bir şey yazın..."
             />
 
-            {autocompleteSuggestions.length > 0 && (
+            {input.trim().length > 0 && autocompleteSuggestions.length > 0 && (
               <ul className="autocomplete-list">
                 {autocompleteSuggestions.map((s, i) => (
                   <li key={i} onClick={() => handleSuggestionClick(s)}>

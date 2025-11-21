@@ -27,19 +27,44 @@ const AdminLogin = ({ onLoginSuccess }) => {
 
   return (
     <div className="admin-login">
-      <h2>Admin Girişi</h2>
-      <input
-        placeholder="Kullanıcı adı"
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Şifre"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Giriş Yap</button>
+      <header className="admin-login__header">
+        <p className="eyebrow">Yönetici Erişimi</p>
+        <h2>Kontrol Merkezine Giriş</h2>
+        <p className="admin-login__subtitle">
+          Onaylanan yöneticiler chatbot eğitim veri kümesini günceller, geri bildirimleri yönetir ve inceleme süreçlerini hızlandırır.
+        </p>
+      </header>
+
+      <div className="admin-login__form">
+        <label className="field">
+          <span>Kurum e-postası</span>
+          <input
+            className="field-input"
+            placeholder="ad.soyad@hacettepe.edu.tr"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+
+        <label className="field">
+          <span>Parola</span>
+          <input
+            className="field-input"
+            type="password"
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        
+        <button type="button" onClick={handleLogin}>
+          Paneli Aç
+        </button>
+      </div>
+
+      <footer className="admin-login__footer">
+        <p>Giriş sorunları için library@hacettepe.edu.tr adresiyle iletişime geçin.</p>
+      </footer>
     </div>
   );
 };
