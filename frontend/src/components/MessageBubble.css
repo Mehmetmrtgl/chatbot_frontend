@@ -1,0 +1,33 @@
+/* src/components/MessageBubble.css */
+
+.message-bubble {
+  max-width: 75%;
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  clear: both;
+}
+
+.user-bubble {
+  background-color: #d1e7dd;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.bot-bubble {
+  background-color: #e2e3e5;
+  align-self: flex-start;
+  margin-right: auto;
+}
+.feedback-buttons {
+  margin-top: 6px;
+  text-align: right;
+}
+
+.feedback-buttons button {
+  margin-left: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
