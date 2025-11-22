@@ -3,6 +3,8 @@ import axios from "axios";
 import "./ChatWidget.css";
 import { v4 as uuidv4 } from "uuid";
 import { FaThumbsUp,FaThumbsDown } from "react-icons/fa";
+import ReactMarkdown from "react-markdown";
+
 const session_id = uuidv4();
 
 const ChatWidget = () => {
@@ -142,7 +144,9 @@ const ChatWidget = () => {
       <div className="chat-box">
         {messages.map((msg, idx) => (
           <div key={idx} className={`message ${msg.role}`}>
-            <div className="text">{msg.text}</div>
+            <div className="text">
+              <ReactMarkdown>{msg.text}</ReactMarkdown>
+            </div>
             <div className="timestamp">{msg.timestamp}</div>
             {msg.role === "bot" && msg.question_id && (
               <div className="feedback-buttons">
