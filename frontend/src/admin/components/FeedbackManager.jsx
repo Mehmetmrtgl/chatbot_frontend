@@ -8,7 +8,7 @@ const FeedbackManager = () => {
   useEffect(() => {
     const fetchFeedback = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/feedback_logs");
+        const res = await axios.get("http://localhost:5001/api/feedback_logs");
          console.log(res.data);
         setFeedbacks(res.data.feedback || []);
       } catch (error) {

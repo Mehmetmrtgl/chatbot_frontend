@@ -26,7 +26,7 @@ const ChatWidget = () => {
     const last = messages[messages.length - 1];
     if (messages.length === 1 || last?.role === "user") {
       axios
-        .post("http://localhost:5000/api/suggested_questions", {
+        .post("http://localhost:5001/api/suggested_questions", {
           last_question: last?.text || "",
         })
         .then((res) => {
@@ -53,7 +53,7 @@ const ChatWidget = () => {
     setAutocompleteSuggestions([]);
 
     try {
-      const res = await axios.post("http://localhost:5000/chat", {
+      const res = await axios.post("http://localhost:5001/chat", {
         question,
         chat_history: newMessages.map(({ role, text }) => ({ role, text })),
         session_id,
@@ -98,7 +98,7 @@ const ChatWidget = () => {
 
   const sendFeedback = async (question_id, isLiked) => {
     try {
-      await axios.post("http://localhost:5000/api/feedback", {
+      await axios.post("http://localhost:5001/api/feedback", {
         question_id,
         is_liked: isLiked,
         session_id,
@@ -115,7 +115,7 @@ const ChatWidget = () => {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:5000/api/autocomplete", {
+      const res = await axios.post("http://localhost:5001/api/autocomplete", {
         prefix: text,
       });
       setAutocompleteSuggestions(res.data.suggestions || []);

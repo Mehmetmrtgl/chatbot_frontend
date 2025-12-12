@@ -8,7 +8,7 @@ const AdminLogin = ({ onLoginSuccess }) => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/admin/login", {
+      const res = await axios.post("http://localhost:5001/admin/login", {
         username,
         password,
       });

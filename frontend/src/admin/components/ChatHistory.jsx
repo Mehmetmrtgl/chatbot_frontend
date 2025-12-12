@@ -10,7 +10,7 @@ const ChatHistory = () => {
   // Oturum ID’lerini al
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/chat_sessions")
+      .get("http://localhost:5001/api/chat_sessions")
       .then((res) => setSessions(res.data.sessions))
       .catch((err) => console.error("Oturumlar alınamadı:", err));
   }, []);

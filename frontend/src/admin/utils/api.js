@@ -1,6 +1,6 @@
 export const getUnapprovedQuestions = async () => {
   try {
-    const res = await fetch("http://localhost:5000/api/unapproved_questions");
+    const res = await fetch("http://localhost:5001/api/unapproved_questions");
 
 
     if (!res.ok) {

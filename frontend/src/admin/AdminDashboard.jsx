@@ -12,7 +12,7 @@ const AdminDashboard = () => {
 
   const handleExport = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/export_finetune_data");
+      const res = await axios.post("http://localhost:5001/api/export_finetune_data");
       alert(`Export tamamlandı. Yeni eklenen kayıt: ${res.data.exported}`);
     } catch (err) {
       alert("Export sırasında hata oluştu");
@@ -65,7 +65,7 @@ const AdminDashboard = () => {
           <button type="button" onClick={handleExport}>
             Fine-tuning verisini dışa aktar
           </button>
-          <button type="button" onClick={() => window.open("http://localhost:5000/api/download_fine_tune_data")}>
+          <button type="button" onClick={() => window.open("http://localhost:5001/api/download_fine_tune_data")}>
             📤 Fine-tuning verisini indir
           </button>
         </div>
