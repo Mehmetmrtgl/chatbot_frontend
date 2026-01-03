@@ -26,17 +26,19 @@ const UnapprovedQuestions = () => {
     const success = await approveAnswer(questionId, answerText);
     if (success) {
       alert("Cevap onaylandı.");
-      fetchQuestions();
+      setQuestions((prev) => prev.filter((q) => q.id !== questionId));
     } else {
       alert("Onaylama başarısız.");
     }
   };
 
   const handleReject = async (questionId) => {
+    if (!window.confirm("Bu soruyu silmek istediğinize emin misiniz?")) return;
+
     const success = await rejectAnswer(questionId);
     if (success) {
-      alert("Soru reddedildi.");
-      fetchQuestions();
+      alert("Soru reddedildi ve silindi.");
+      setQuestions((prev) => prev.filter((q) => q.id !== questionId));
     } else {
       alert("Reddetme başarısız.");
     }

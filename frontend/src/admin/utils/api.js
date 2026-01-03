@@ -38,7 +38,7 @@ export const approveAnswer = async (questionId, answerText) => {
 export const rejectAnswer = async (questionId) => {
   try {
     const res = await fetch(`${API_BASE_URL}/api/reject_answer/${questionId}`, {
-      method: "POST",
+      method: "DELETE", 
     });
     return res.ok;
   } catch (error) {
