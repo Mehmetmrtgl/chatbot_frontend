@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ChatWidget.css";
 import { v4 as uuidv4 } from "uuid";
-import { FaThumbsUp,FaThumbsDown } from "react-icons/fa";
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 
 const session_id = uuidv4();
+
+// Dosya yolundan sadece dosya ismini (orn: yonetmelik.pdf) ayıran yardımcı fonksiyon
+const getFileName = (path) => {
+  if (!path) return "";
+  return path.split(/[\\/]/).pop();
+};
 
 const ChatWidget = () => {
   const [messages, setMessages] = useState([
@@ -20,7 +26,7 @@ const ChatWidget = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [topSuggestion, setTopSuggestion] = useState("");
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
-  const [chatEnded, setChatEnded] = useState(false); // ✅ sohbet bitti mi
+  const [chatEnded, setChatEnded] = useState(false);
 
   useEffect(() => {
     const last = messages[messages.length - 1];
@@ -68,13 +74,14 @@ const ChatWidget = () => {
         timestamp: new Date().toLocaleTimeString(),
         question_id: res.data.question_id || null,
         response: res.data,
+        resource: res.data.resource || null, 
       };
 
       setMessages((prev) => [...prev, replyMsg]);
       setTopSuggestion(res.data.suggestions?.[0] || "");
 
       if (res.data.status === "ended") {
-        setChatEnded(true); // ✅ sohbet bitti işareti
+        setChatEnded(true);
       }
     } catch (err) {
       setMessages((prev) => [
@@ -147,6 +154,33 @@ const ChatWidget = () => {
             <div className="text">
               <ReactMarkdown>{msg.text}</ReactMarkdown>
             </div>
+
+            {msg.role === "bot" && msg.resource && msg.resource.type === "pdf" && (
+              <div className="pdf-popup-container">
+                <div className="pdf-popup-trigger" title="Kaynağı Görüntüle">📄</div>
+
+                <div className="pdf-resource-card popup">
+                  <div className="pdf-icon">📄</div>
+                  <div className="pdf-details">
+                    <span className="pdf-name">{getFileName(msg.resource.name)}</span>
+                    {msg.resource.page && (
+                      <span className="pdf-page">Sayfa: {msg.resource.page}</span>
+                    )}
+                  </div>
+                  <a
+                    href={`http://localhost:5001/download/${getFileName(msg.resource.name)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pdf-download-btn"
+                  >
+                    İndir
+                  </a>
+                  <div className="popup-arrow"></div>
+                </div>
+              </div>
+            )}
+
+
             <div className="timestamp">{msg.timestamp}</div>
             {msg.role === "bot" && msg.question_id && (
               <div className="feedback-buttons">
@@ -186,7 +220,6 @@ const ChatWidget = () => {
         </div>
       )}
 
-      {/* ✅ Sohbet bitince mesaj kutusu yerine “yeniden başlat” butonu */}
       {chatEnded ? (
         <div className="chat-ended">
           <p>Görüşme sona erdi.</p>

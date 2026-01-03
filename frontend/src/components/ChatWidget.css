@@ -277,6 +277,132 @@
   cursor: pointer;
 }
 
+.message.bot {
+  position: relative;
+}
+.pdf-popup-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+.pdf-popup-trigger {
+  font-size: 1.2rem;
+  color: #0284c7;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.pdf-popup-trigger:hover {
+  background-color: #e0f2fe;
+  transform: scale(1.05);
+}
+
+.pdf-resource-card.popup {
+  position: absolute;
+  bottom: 130%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  max-width: 60vw;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.popup-arrow {
+  position: absolute;
+  top: 100%;
+  left: 16px;
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #cbd5e1 transparent transparent transparent;
+}
+
+.popup-arrow::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+.pdf-popup-container:hover .pdf-resource-card.popup {
+  opacity: 1;
+  visibility: visible;
+  bottom: 145%;
+}
+
+.pdf-icon {
+  font-size: 1.4rem;
+  color: #ef4444;
+  flex-shrink: 0;
+}
+
+.pdf-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pdf-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #1e293b;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.pdf-page {
+  font-size: 0.65rem;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+
+.pdf-download-btn {
+  background-color: #0f172a;
+  color: #fff;
+  text-decoration: none;
+  
+  font-size: 0.65rem; 
+  font-weight: 400;
+  
+  padding: 6px 12px; 
+  
+  border-radius: 4px;
+  text-align: center;
+  display: block;
+  transition: background 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.pdf-download-btn:hover {
+  background-color: #334155;
+}
+
 @media (max-width: 720px) {
   .message {
     max-width: 90%;
